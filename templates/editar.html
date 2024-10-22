@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar en Seminarios</title>
+</head>
+<body>
+    <h1>Editar en Seminarios</h1>
+    <form action=A"{{url_for('editar', id=registro.id)}}" method="POST">
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" required><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" required><br>
+
+        <label for="turno">Turno:</label>
+        <input type="radio" name="turno" value="Mañana" required> Mañana
+        <input type="radio" name="turno" value="Tarde" required> Tarde
+        <input type="radio" name="turno" value="Noche" required> Noche<br>
+
+        <label for="seminarios">Seminarios disponibles:</label><br>
+        {% for seminario in seminarios %}
+            <input type="checkbox" name="seminarios" value="{{ seminario }}"> {{ seminario }}<br>
+        {% endfor %}
+
+        <button type="submit">Enviar registro</button>
+    </form>
+</body>
+</html>

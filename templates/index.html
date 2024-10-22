@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <h1>Registro en Seminarios</h1>
+    <a href="{{url_for('nuevo')}}">Nuevo</a>
+    <br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FECHA</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>TURNO</th>
+                <th>SEMINARIOS</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        
+        <tbody>
+            {% if registros %}
+                {% for registro in registros %}
+                <tr>
+                    <td>{{registro.id}}</td>
+                    <td>{{registro.fecha}}</td>
+                    <td>{{registro.nombre}}</td>
+                    <td>{{registro.apellido}}</td>
+                    <td>{{registro.turno}}</td>
+                    <td>{{ ', '.join(registro.seminarios) }}</td>
+                    <td>
+                        <a href="{{url_for('editar', id=registro.id )}}" >Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{url_for('eliminar', id=registro.id )}}" method="POST">
+                            <input type="submit" value="eliminar">
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor  %} 
+            {% else %}
+            <tr>
+                <td colspan="4"> No hay registros </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+
+</body>
+</html>
